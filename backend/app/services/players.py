@@ -95,7 +95,11 @@ def create_player_profile(
 
     image_path = None
     if profile_image and profile_image.filename:
-        image_path = save_upload(profile_image, "profile-images", {".jpg", ".jpeg", ".png", ".webp"})
+        image_path = save_upload(
+            profile_image,
+            "profile-images",
+            {".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif", ".jfif"},
+        )
 
     profile = PlayerProfile(user_id=current_user.id, profile_image_path=image_path, **data)
     db.add(profile)
@@ -114,7 +118,11 @@ def update_player_profile(
 
     if profile_image and profile_image.filename:
         delete_upload(profile.profile_image_path)
-        profile.profile_image_path = save_upload(profile_image, "profile-images", {".jpg", ".jpeg", ".png", ".webp"})
+        profile.profile_image_path = save_upload(
+            profile_image,
+            "profile-images",
+            {".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif", ".jfif"},
+        )
 
     for field, value in data.items():
         setattr(profile, field, value)
