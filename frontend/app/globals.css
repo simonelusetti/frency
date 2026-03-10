@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-surf text-ink;
+  background-image:
+    radial-gradient(circle at top left, rgba(47, 107, 59, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(201, 140, 92, 0.12), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(244, 247, 241, 0.95));
+}
+
+a {
+  @apply transition-opacity hover:opacity-80;
+}
+
+input,
+textarea,
+select {
+  @apply w-full rounded-xl border border-ink/15 bg-white px-4 py-3 outline-none ring-0 transition focus:border-field;
+}
+
+button {
+  @apply rounded-xl px-4 py-3 font-medium transition;
+}

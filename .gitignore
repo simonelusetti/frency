@@ -1,0 +1,42 @@
+.DS_Store
+Thumbs.db
+
+# Local environment files
+backend/.env
+frontend/.env.local
+frontend/.env*.local
+
+# Python backend
+backend/.venv/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/.coverage
+backend/htmlcov/
+backend/frency.db
+backend/*.db
+
+# Local uploads
+backend/uploads/videos/*
+backend/uploads/documents/*
+backend/uploads/profile-images/*
+!backend/uploads/.gitkeep
+!backend/uploads/videos/.gitkeep
+!backend/uploads/documents/.gitkeep
+!backend/uploads/profile-images/.gitkeep
+
+# Node / Next frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Accidental nested repo metadata
+frontend/.git/
