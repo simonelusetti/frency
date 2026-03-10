@@ -9,11 +9,11 @@ type PlayerCardProps = {
 
 export function PlayerCard({ player, href }: PlayerCardProps) {
   return (
-    <article className="rounded-[1.75rem] bg-white p-5 shadow-sm">
+    <article className="glass-panel p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold">{player.full_name}</h3>
-          <p className="mt-1 text-sm text-ink/65">
+          <p className="mt-1 text-sm text-ink/[0.65]">
             {player.primary_role}
             {player.secondary_role ? ` / ${player.secondary_role}` : ""} • Age {player.age}
           </p>

@@ -6,12 +6,16 @@
   color-scheme: light;
 }
 
+html {
+  @apply bg-[#07111b];
+}
+
 body {
-  @apply bg-surf text-ink;
+  @apply bg-surf text-ink antialiased;
   background-image:
-    radial-gradient(circle at top left, rgba(47, 107, 59, 0.12), transparent 28%),
-    radial-gradient(circle at 85% 10%, rgba(201, 140, 92, 0.12), transparent 18%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(244, 247, 241, 0.95));
+    radial-gradient(circle at top left, rgba(71, 165, 102, 0.18), transparent 26%),
+    radial-gradient(circle at 85% 10%, rgba(255, 176, 109, 0.16), transparent 20%),
+    linear-gradient(180deg, rgba(245, 248, 242, 0.75), rgba(233, 238, 233, 0.98));
 }
 
 a {
@@ -21,9 +25,25 @@ a {
 input,
 textarea,
 select {
-  @apply w-full rounded-xl border border-ink/15 bg-white px-4 py-3 outline-none ring-0 transition focus:border-field;
+  @apply w-full rounded-xl border border-ink/[0.15] bg-white px-4 py-3 outline-none ring-0 transition focus:border-field;
 }
 
 button {
   @apply rounded-xl px-4 py-3 font-medium transition;
+}
+
+.app-shell {
+  @apply mx-auto min-h-screen w-full max-w-6xl px-4 pb-28 pt-4 md:px-6 md:pb-16;
+}
+
+.glass-panel {
+  @apply rounded-[1.75rem] border border-white/40 bg-white/[0.72] shadow-[0_12px_40px_rgba(8,20,34,0.08)] backdrop-blur;
+}
+
+.video-panel {
+  @apply relative overflow-hidden rounded-[2rem] bg-[#08121d] text-white shadow-[0_24px_60px_rgba(6,17,30,0.24)];
+}
+
+.chip {
+  @apply inline-flex items-center rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium;
 }

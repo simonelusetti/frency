@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Frency",
+    "slug": "frency-mobile",
+    "scheme": "frency",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-document-picker",
+      "expo-image-picker"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.simonelusetti.frency"
+    },
+    "android": {
+      "package": "com.simonelusetti.frency"
+    }
+  }
+}

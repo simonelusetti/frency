@@ -95,10 +95,10 @@ export function PlayerDashboardClient() {
             <p className="mt-4 text-sm leading-7 text-ink/80">{profile.bio || "No bio added yet."}</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/player/profile/edit" className="rounded-xl border border-ink/15 bg-white px-4 py-3">
+            <Link href="/player/profile/edit" className="rounded-xl border border-ink/[0.15] bg-white px-4 py-3">
               Edit profile
             </Link>
-            <Link href={`/players/${profile.id}`} className="rounded-xl border border-ink/15 bg-white px-4 py-3">
+            <Link href={`/players/${profile.id}`} className="rounded-xl border border-ink/[0.15] bg-white px-4 py-3">
               Public page
             </Link>
             <Link href="/player/videos/upload" className="rounded-xl bg-field px-4 py-3 text-white">
@@ -126,7 +126,7 @@ export function PlayerDashboardClient() {
                     <source src={`${API_URL}${video.file_path}`} type="video/mp4" />
                   </video>
                   <button
-                    className="mt-4 border border-ink/15 bg-white text-sm"
+                    className="mt-4 border border-ink/[0.15] bg-white text-sm"
                     onClick={() => handleDeleteVideo(video.id)}
                   >
                     Delete video

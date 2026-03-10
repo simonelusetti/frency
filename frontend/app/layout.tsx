@@ -12,8 +12,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <main className="mx-auto min-h-[calc(100vh-88px)] w-full max-w-6xl px-5 pb-16">{children}</main>
+        <div className="app-shell">
+          <Nav />
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 
 import { API_URL, apiFetch } from "@/lib/api";
+import { PlayerReelCard } from "@/components/player-reel-card";
 import { getStoredToken, getStoredUser } from "@/lib/auth";
 import type { PlayerProfile, SavedPlayersResponse, ScoutNote } from "@/lib/types";
 
@@ -96,26 +97,20 @@ export function ScoutPlayerDetailClient({ playerId }: ScoutPlayerDetailClientPro
 
   return (
     <div className="grid gap-6">
-      <section className="rounded-[2rem] bg-white p-6 shadow-sm">
-        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-          <div>
-            <h1 className="text-3xl font-semibold">{player.full_name}</h1>
-            <p className="mt-2 text-sm text-ink/70">
-              {player.primary_role}
-              {player.secondary_role ? ` / ${player.secondary_role}` : ""} • {player.current_team || "No team listed"}
-            </p>
-            <p className="mt-2 text-sm text-ink/70">
-              {player.nationality} • {player.age} • {player.preferred_foot || "Foot not set"}
-            </p>
-            <p className="mt-4 text-sm leading-7 text-ink/80">{player.bio || "No bio available."}</p>
-          </div>
-          <button className="bg-field px-4 py-3 text-white" onClick={handleSaveToggle}>
-            {saved ? "Remove from saved" : "Save player"}
+      <PlayerReelCard
+        player={player}
+        video={player.videos[0] || null}
+        profileHref={`/players/${player.id}`}
+        primaryActionHref={`/players/${player.id}`}
+        primaryActionLabel="Public profile"
+        actionSlot={
+          <button className="rounded-2xl border border-white/[0.18] bg-white/10 px-4 py-3 text-sm" onClick={handleSaveToggle}>
+            {saved ? "Remove saved" : "Save player"}
           </button>
-        </div>
-      </section>
+        }
+      />
 
-      <section className="rounded-[2rem] bg-white p-6 shadow-sm">
+      <section className="glass-panel p-5 md:p-6">
         <h2 className="text-xl font-semibold">Private scout note</h2>
         <form onSubmit={handleNoteSubmit} className="mt-4 grid gap-4">
           <textarea value={note} onChange={(event) => setNote(event.target.value)} rows={6} />
@@ -126,24 +121,38 @@ export function ScoutPlayerDetailClient({ playerId }: ScoutPlayerDetailClientPro
         {message ? <p className="mt-3 text-sm text-field">{message}</p> : null}
       </section>
 
-      <section className="rounded-[2rem] bg-white p-6 shadow-sm">
-        <h2 className="text-xl font-semibold">Highlight videos</h2>
-        <div className="mt-4 grid gap-4">
-          {player.videos.length === 0 ? (
-            <p className="text-sm text-ink/70">No public videos uploaded yet.</p>
-          ) : (
-            player.videos.map((video) => (
-              <div key={video.id} className="rounded-2xl border border-ink/10 p-4">
+      <section className="glass-panel p-5 md:p-6">
+        <h2 className="text-xl font-semibold">Profile snapshot</h2>
+        <div className="mt-4 grid gap-3 text-sm text-ink/[0.72] md:grid-cols-2">
+          <div className="rounded-2xl bg-white/80 p-4">
+            <p>Nationality: {player.nationality}</p>
+            <p className="mt-2">Age: {player.age}</p>
+            <p className="mt-2">Preferred foot: {player.preferred_foot || "Not set"}</p>
+          </div>
+          <div className="rounded-2xl bg-white/80 p-4">
+            <p>Availability: {player.availability_status || "Not set"}</p>
+            <p className="mt-2">Height: {player.height_cm || "N/A"} cm</p>
+            <p className="mt-2">Weight: {player.weight_kg || "N/A"} kg</p>
+          </div>
+        </div>
+      </section>
+
+      {player.videos.length > 1 ? (
+        <section className="glass-panel p-5 md:p-6">
+          <h2 className="text-xl font-semibold">More clips</h2>
+          <div className="mt-4 grid gap-4">
+            {player.videos.slice(1).map((video) => (
+              <div key={video.id} className="rounded-[1.5rem] bg-[#0b1320] p-3 text-white">
                 <p className="font-medium">{video.title}</p>
-                <p className="mt-1 text-sm text-ink/70">{video.description || "No description"}</p>
-                <video controls className="mt-4 w-full rounded-2xl bg-black">
+                <p className="mt-1 text-sm text-white/[0.72]">{video.description || "No description"}</p>
+                <video controls className="mt-3 w-full rounded-[1.25rem] bg-black">
                   <source src={`${API_URL}${video.file_path}`} type="video/mp4" />
                 </video>
               </div>
-            ))
-          )}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

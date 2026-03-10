@@ -40,3 +40,9 @@ frontend/pnpm-debug.log*
 
 # Accidental nested repo metadata
 frontend/.git/
+
+# Expo mobile app
+apps/mobile/node_modules/
+apps/mobile/.expo/
+apps/mobile/dist/
+apps/mobile/.env
